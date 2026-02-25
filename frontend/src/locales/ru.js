@@ -5,9 +5,9 @@ export default {
     logo: 'Hexlet Chat',
     authorization: {
       login: 'Войти',
+      logout: 'Выйти',
       signup: 'Регистрация',
       signup_btn: 'Зарегистрироваться',
-      logout: 'Выйти',
     },
     notFoundPage: {
       pageNotFound: 'Страница не найдена',

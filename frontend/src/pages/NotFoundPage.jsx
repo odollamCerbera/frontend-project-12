@@ -6,9 +6,8 @@ const NotFoundPage = () => {
   const { t } = useTranslation()
 
   return (
-    <Container fluid className='d-flex flex-column h-100 p-0'>
-
-      <Navbar bg='light' expand='lg' className='shadow-sm'>
+    <Container fluid className='d-flex flex-column vh-100 p-0'>
+      <Navbar bg='white' variant='light' expand='lg' className='shadow-sm'>
         <Container>
           <Navbar.Brand href='/'>{t('logo')}</Navbar.Brand>
         </Container>
@@ -19,7 +18,6 @@ const NotFoundPage = () => {
         <h1 className='h4 text-muted'>{t('notFoundPage.pageNotFound')}</h1>
         <p className='text-muted'>{t('notFoundPage.youCanGo')} <a href='/'>{t('notFoundPage.toMainPage')}</a></p>
       </Container>
-
     </Container>
   )
 }

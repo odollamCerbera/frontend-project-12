@@ -1,48 +1,61 @@
 import { useTranslation } from 'react-i18next'
-import { Formik, Form, Field } from 'formik'
-import { Col } from 'react-bootstrap'
+import { Button, Form, FloatingLabel } from 'react-bootstrap'
+import { useFormik } from 'formik'
 
 const AuthorizationForm = () => {
   const { t } = useTranslation()
 
+  const formik = useFormik({
+    initialValues: { username: '', password: '' },
+    onSubmit: values => { console.log(values) }
+  })
+
   return (
-    <Formik initialValues={{ username: '', password: '' }}>
-      {() => (
-        <Col xs={12} md={6} className='mt-3 mt-md-0'>
-          <Form>
-            <h1 className='text-center mb-4'>{t('authorization.login')}</h1>
+    <Form onSubmit={formik.handleSubmit}>
+      <h1 className='text-center mb-4'>{t('authorization.login')}</h1>
 
-            <div className='form-floating mb-3'>
-              <label htmlFor='username'>{t('loginPage.login')}</label>
-              <Field
-                type='usermane'
-                name='username'
-                className='form-control'
-                required=''
-                placeholder={t('loginPage.login')}
-                id='username'
-                value=''
-              />
-            </div>
+      {/* Поле login */}
+      <FloatingLabel
+        controlId='username'
+        label={t('loginPage.login')}
+        className='mb-3'
+      >
+        <Form.Control
+          name='username'
+          type='text'
+          placeholder={t('loginPage.login')}
+          isInvalid={formik.touched.username && !!formik.errors.username}
+          {...formik.getFieldProps('username')}
+        />
 
-            <div className='form-floating mb-4'>
-              <label htmlFor='password' className='form-label'>{t('loginPage.password')}</label>
-              <Field
-                type='password'
-                name='password'
-                className='form-control'
-                required=''
-                placeholder={t('loginPage.password')}
-                id='password'
-                value=''>
-              </Field>
-            </div>
+        <Form.Control.Feedback type='invalid'>
+          {formik.errors.username}
+        </Form.Control.Feedback>
+      </FloatingLabel>
 
-            <button type='submit' className='w-100 mb-3 btn btn-outline-primary'>{t('authorization.login')}</button>
-          </Form>
-        </Col>
-      )}
-    </Formik>
+      {/* Поле password */}
+      <FloatingLabel
+        controlId='password'
+        label={t('loginPage.password')}
+        className='mb-3'
+      >
+        <Form.Control
+          name='password'
+          type='password'
+          placeholder={t('loginPage.password')}
+          isInvalid={formik.touched.password && !!formik.errors.password}
+          {...formik.getFieldProps('password')}
+        />
+
+        <Form.Control.Feedback type='invalid'>
+          {formik.errors.password}
+        </Form.Control.Feedback>
+      </FloatingLabel>
+
+      <Button type='submit' className='w-100 mb-3'>
+        {t('authorization.login')}
+      </Button>
+    </Form>
   )
 }
 

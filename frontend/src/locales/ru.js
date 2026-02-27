@@ -11,8 +11,8 @@ export default {
     },
     notFoundPage: {
       pageNotFound: 'Страница не найдена',
-      youCanGo: 'Но вы можете перейти',
-      toMainPage: 'на главную страницу',
+      suggestAction: 'Но вы можете перейти',
+      mainPage: 'на главную страницу',
     },
     loginPage: {
       login: 'Ваш ник',
@@ -20,21 +20,28 @@ export default {
       noAccount: 'Нет аккаунта?',
     },
     errors: {
-      isInvalidUsernameOrPassword: 'Неверные имя пользователя или пароль',
-      from3To20Characters: 'От 3 до 20 символов',
-      atLeast6Characters: 'Не менее 6 символов',
-      requiredField: 'Обязательное поле',
-      passwordsMustMatch: 'Пароли должны совпадать',
-    }
+      validation: {
+        invalidRange: 'От 3 до 20 символов',
+        minLength: 'Не менее 6 символов',
+        requiredField: 'Обязательное поле',
+        misMatch: 'Пароли должны совпадать',
+      },
+      system: {
+        invalidData: 'Неверные имя пользователя или пароль',
+        connection: 'Ошибка соединения',
+        serverError: 'Сервер не отвечает',
+        unknown: 'Неизвестная ошибка',
+      },
+    },
   },
 }
 
 /*
 Подтвердите пароль, 
 Имя пользователя, 
-Пароли должны совпадать, 
+
 Отправить, 
-Ошибка соединения, 
+
 +, 
 
 Имя канала, 

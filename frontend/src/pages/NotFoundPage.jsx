@@ -16,7 +16,7 @@ const NotFoundPage = () => {
       <Container className='text-center'>
         <Image fluid alt={t('notFoundPage.pageNotFound')} className='h-25 mb-4' src={imageNotFound} />
         <h1 className='h4 text-muted'>{t('notFoundPage.pageNotFound')}</h1>
-        <p className='text-muted'>{t('notFoundPage.youCanGo')} <a href='/'>{t('notFoundPage.toMainPage')}</a></p>
+        <p className='text-muted'>{t('notFoundPage.suggestAction')} <a href='/'>{t('notFoundPage.mainPage')}</a></p>
       </Container>
     </Container>
   )

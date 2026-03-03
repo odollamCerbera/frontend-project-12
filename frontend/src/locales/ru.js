@@ -1,5 +1,3 @@
-import LoginPage from "../pages/LoginPage";
-
 export default {
   translation: {
     logo: 'Hexlet Chat',
@@ -51,5 +49,4 @@ export default {
 Канал создан, 
 Канал переименован, 
 Канал удалён.
-
 */

@@ -1,26 +1,22 @@
-import { useTranslation } from 'react-i18next'
-import avatarLoginPage from '../assets/avatar-LoginPage.jpg'
-import AuthorizationForm from '../componets/authorizationForm.jsx'
-import { Link } from 'react-router-dom'
 import {
-  Container,
-  Navbar,
-  Row,
-  Col,
   Card,
+  Col,
+  Container,
   Image,
+  Row
 } from 'react-bootstrap'
+import { useTranslation } from 'react-i18next'
+import { Link } from 'react-router-dom'
+import avatarLoginPage from '../assets/avatar-LoginPage.jpg'
+import AuthorizationForm from '../features/auth/authForm'
+import Header from '../сomponents/Header'
 
 const LoginPage = () => {
   const { t } = useTranslation()
 
   return (
     <Container fluid className='d-flex flex-column h-100 p-0' id='chat'>
-      <Navbar bg='white' variant='light' expand='lg' className='shadow-sm'>
-        <Container>
-          <Navbar.Brand href='/'>{t('logo')}</Navbar.Brand>
-        </Container>
-      </Navbar>
+      <Header />
 
       <Container fluid className='h-100'>
         <Row className='justify-content-center align-content-center h-100'>

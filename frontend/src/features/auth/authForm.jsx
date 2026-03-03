@@ -1,47 +1,23 @@
-import { useTranslation } from 'react-i18next'
 import { useFormik } from 'formik'
-import { Button, Form, FloatingLabel, Alert } from 'react-bootstrap'
-import * as yup from 'yup'
-import axios from 'axios'
+import { Alert, Button, FloatingLabel, Form } from 'react-bootstrap'
+import { useTranslation } from 'react-i18next'
+import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
-
-// Вынести функцию из этого файла для повторного использования на странице регистрации
-const getLoginSchema = (t) => yup.object({
-  username: yup
-    .string()
-    .min(3, t('errors.validation.invalidRange'))
-    .max(20, t('errors.validation.invalidRange'))
-    .required(t('errors.validation.requiredField')),
-  password: yup
-    .string()
-    .min(5, t('errors.validation.minLength')) // Исправить на 6 (для тестирования password: admin - всего 5 символов)
-    .required(t('errors.validation.requiredField'))
-})
+import { login } from './authSlice'
+import { getLoginSchema } from './validators.js'
 
 const AuthorizationForm = () => {
   const { t } = useTranslation()
+  const dispatch = useDispatch()
   const navigate = useNavigate()
+  const { loading, error } = useSelector((state) => state.auth) // Получаем состояние загрузки и ошибку из Redux
 
   const formik = useFormik({
     initialValues: { username: '', password: '' },
     validationSchema: getLoginSchema(t),
-    onSubmit: async (values, { setErrors, setSubmitting }) => {
-      try {
-        const response = await axios.post('/api/v1/login', values)
-        localStorage.setItem('token', JSON.stringify(response.data))
-        navigate('/')
-      } catch (error) {
-        setSubmitting(false)
-        switch (error.response?.status) {
-          case 401: setErrors({ auth: t('errors.system.invalidData') })
-            break
-          case 500: setErrors({ auth: t('errors.system.serverError') })
-            break
-          case 0: setErrors({ auth: t('errors.system.connection') })
-            break
-          default: setErrors({ auth: t('errors.system.unknown') })
-        }
-      }
+    onSubmit: async (values) => {
+      const result = await dispatch(login(values))
+      if (login.fulfilled.match(result)) navigate('/')
     }
   })
 
@@ -86,13 +62,13 @@ const AuthorizationForm = () => {
       </FloatingLabel>
 
       {/* Вывод системной ошибки отдельным блоком при наличии */}
-      {formik.errors.auth && (
+      {error && (
         <Alert variant='danger'>
-          {formik.errors.auth}
+          {t(error)}
         </Alert>
       )}
 
-      <Button type='submit' className='w-100 mb-3'>
+      <Button type='submit' className='w-100 mb-3' disabled={loading}>
         {t('authorization.login')}
       </Button>
     </Form>

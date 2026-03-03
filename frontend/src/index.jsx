@@ -1,12 +1,10 @@
-import { StrictMode } from 'react'
-import { createRoot } from 'react-dom/client'
-import init from './init.jsx'
+import ReactDOM from 'react-dom/client'
+import init from './init'
 
-const run = async () => {
-  const app = await init()
-  createRoot(document.getElementById('root')).render(
-    <StrictMode>{app}</StrictMode>,
-  )
+// Здесь запускаем приложение
+const app = async () => {
+  const root = ReactDOM.createRoot(document.getElementById('root'))
+  root.render(await init())
 }
 
-run()
+app()

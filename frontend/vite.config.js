@@ -9,6 +9,7 @@ export default defineConfig({
       // Проксируем запросы к API
       '/api': {
         target: 'http://localhost:5001',
+        changeOrigin: true,
       },
       // Проксируем WebSocket соединения
       '/socket.io': {

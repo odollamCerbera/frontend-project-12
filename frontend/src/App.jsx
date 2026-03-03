@@ -1,15 +1,19 @@
 import 'bootstrap/dist/css/bootstrap.min.css'
-import { Navigate, BrowserRouter, Routes, Route } from 'react-router-dom'
-import HomePage from './pages/HomePage.jsx'
-import LoginPage from './pages/LoginPage.jsx'
-import SignupPage from './pages/SignupPage.jsx'
-import NotFoundPage from './pages/NotFoundPage.jsx'
+import React from 'react'
+import { useSelector } from 'react-redux'
+import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom'
+import HomePage from './pages/HomePage'
+import LoginPage from './pages/LoginPage'
+import NotFoundPage from './pages/NotFoundPage'
+import SignupPage from './pages/SignupPage'
 
+// Проверяем, есть ли токен. Если нет, то перенаправляем на страницу логина
 const PrivateRoute = ({ children }) => {
-  const userId = JSON.parse(localStorage.getItem('token'))
-  return userId?.token ? children : <Navigate to='/login' />
+  const { isAuthenticated } = useSelector((state) => state.auth)
+  return isAuthenticated ? children : <Navigate to='login' />
 }
 
+// Настраиваем маршрутизацию
 const App = () => {
   return (
     <BrowserRouter>

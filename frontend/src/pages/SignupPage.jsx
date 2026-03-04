@@ -1,12 +1,11 @@
-import { Container } from 'react-bootstrap'
 import Header from '../components/Header'
+import SignupCard from '../components/Signup/SignupCard'
 
-// Здесь будет страница регистрации
 const SignupPage = () => (
-  <Container fluid className='d-flex flex-column h-100 p-0'>
+  <div className='d-flex flex-column h-100'>
     <Header />
-    <p className='text-muted'>test signup page</p>
-  </Container>
+    <SignupCard />
+  </div>
 )
 
 export default SignupPage

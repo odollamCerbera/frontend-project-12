@@ -1,5 +1,3 @@
-import { use } from "react";
-
 export default {
   translation: {
     logo: 'Hexlet Chat',
@@ -37,13 +35,13 @@ export default {
       channelDeleted: 'Канал удалён',
     },
     messages: {
+      newMessage: 'Введите сообщение...',
+      send: 'Отправить',
       counter: {
         count_one: '{{ count }} сообщение',
         count_few: '{{ count }} сообщения',
         count_many: '{{ count }} сообщений',
       },
-      newMessage: 'Введите сообщение...',
-      send: 'Отправить',
     },
     errors: {
       validation: {

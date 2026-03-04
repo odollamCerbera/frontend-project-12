@@ -1,7 +1,7 @@
 import { useField } from 'formik'
 import { FloatingLabel, Form } from 'react-bootstrap'
 
-const LoginFormField = ({ name, label, type, placeholder, ...props }) => {
+const FormField = ({ name, label, type, placeholder, ...props }) => {
 
   const [field, meta] = useField(name)
 
@@ -22,4 +22,4 @@ const LoginFormField = ({ name, label, type, placeholder, ...props }) => {
   )
 }
 
-export default LoginFormField
+export default FormField

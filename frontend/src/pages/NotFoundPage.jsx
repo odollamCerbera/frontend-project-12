@@ -1,12 +1,11 @@
-import { Container } from 'react-bootstrap'
 import Header from '../components/Header'
-import NotFound from '../components/NotFound'
+import NotFound from '../components/404/NotFound'
 
 const NotFoundPage = () => (
-  <Container fluid className='d-flex flex-column h-100 p-0'>
+  <div className='d-flex flex-column h-100'>
     <Header />
     <NotFound />
-  </Container>
+  </div>
 )
 
 export default NotFoundPage

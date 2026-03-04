@@ -3,9 +3,9 @@ import { Alert, Button, Form } from 'react-bootstrap'
 import { useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
-import { login } from '../../features/auth/authSlice.js'
-import { getLoginSchema } from '../../features/auth/validators.js'
-import LoginFormField from './LoginFormField'
+import { login } from '../../slices/authSlice.js'
+import { getLoginSchema } from '../../utils/validators.js'
+import FormField from '../FormField.jsx'
 
 const LoginForm = () => {
   const { t } = useTranslation()
@@ -26,14 +26,14 @@ const LoginForm = () => {
         <Form onSubmit={handleSubmit}>
           <h1 className='text-center mb-4'>{t('authorization.login')}</h1>
 
-          <LoginFormField
+          <FormField
             name='username'
             label={t('loginPage.login')}
             type='text'
             autoFocus
           />
 
-          <LoginFormField
+          <FormField
             name='password'
             label={t('loginPage.password')}
             type='password'

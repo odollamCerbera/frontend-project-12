@@ -1,13 +1,11 @@
-import { Container } from 'react-bootstrap'
-import ChatHome from '../components/Chat/ChatHome'
 import Header from '../components/Header'
+import ChatHome from '../components/Chat/ChatHome'
 
-// Здесь будет главная страница чата 
 const HomePage = () => (
-  <Container fluid className='d-flex flex-column h-100 p-0'>
+  <div className='d-flex flex-column h-100'>
     <Header />
     <ChatHome />
-  </Container>
+  </div>
 )
 
 export default HomePage

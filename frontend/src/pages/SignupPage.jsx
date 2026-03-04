@@ -1,5 +1,5 @@
 import { Container } from 'react-bootstrap'
-import Header from '../сomponents/Header'
+import Header from '../components/Header'
 
 // Здесь будет страница регистрации
 const SignupPage = () => (

@@ -30,6 +30,7 @@ const LoginForm = () => {
             name='username'
             label={t('loginPage.login')}
             type='text'
+            autoFocus
           />
 
           <LoginFormField
@@ -45,7 +46,7 @@ const LoginForm = () => {
             </Alert>
           )}
 
-          <Button type='submit' className='w-100 mb-3' disabled={loading}>
+          <Button type='submit' variant='outline-primary' className='w-100 mb-3' disabled={loading}>
             {t('authorization.login')}
           </Button>
         </Form>

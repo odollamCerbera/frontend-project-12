@@ -1,3 +1,5 @@
+import { use } from "react";
+
 export default {
   translation: {
     logo: 'Hexlet Chat',
@@ -5,7 +7,6 @@ export default {
       login: 'Войти',
       logout: 'Выйти',
       signup: 'Регистрация',
-      signup_btn: 'Зарегистрироваться',
     },
     notFoundPage: {
       pageNotFound: 'Страница не найдена',
@@ -16,6 +17,33 @@ export default {
       login: 'Ваш ник',
       password: 'Пароль',
       noAccount: 'Нет аккаунта?',
+    },
+    signupPage: {
+      username: 'Имя пользователя',
+      password: 'Пароль',
+      passwordRepeat: 'Подтвердите пароль',
+      signup: 'Регистрация',
+      signup_btn: 'Зарегистрироваться',
+    },
+    chat: {
+      channel: 'Имя канала',
+      channels: 'Каналы',
+      createChannel: '+',
+      controlChannel: 'Управление каналом',
+      renameChannel: 'Переименовать',
+      deleteChannel: 'Удалить',
+      channelCreated: 'Канал создан',
+      channelRenamed: 'Канал переименован',
+      channelDeleted: 'Канал удалён',
+    },
+    messages: {
+      counter: {
+        count_one: '{{ count }} сообщение',
+        count_few: '{{ count }} сообщения',
+        count_many: '{{ count }} сообщений',
+      },
+      newMessage: 'Введите сообщение...',
+      send: 'Отправить',
     },
     errors: {
       validation: {
@@ -33,20 +61,3 @@ export default {
     },
   },
 }
-
-/*
-Подтвердите пароль, 
-Имя пользователя, 
-
-Отправить, 
-
-+, 
-
-Имя канала, 
-Управление каналом, 
-Переименовать, 
-Удалить, 
-Канал создан, 
-Канал переименован, 
-Канал удалён.
-*/

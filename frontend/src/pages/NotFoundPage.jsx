@@ -1,6 +1,6 @@
 import { Container } from 'react-bootstrap'
-import Header from '../сomponents/Header'
-import NotFound from '../сomponents/NotFound'
+import Header from '../components/Header'
+import NotFound from '../components/NotFound'
 
 const NotFoundPage = () => (
   <Container fluid className='d-flex flex-column h-100 p-0'>

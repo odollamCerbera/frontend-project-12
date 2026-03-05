@@ -2,7 +2,6 @@ import { useField } from 'formik'
 import { FloatingLabel, Form } from 'react-bootstrap'
 
 const FormField = ({ name, label, type, placeholder, ...props }) => {
-
   const [field, meta] = useField(name)
 
   return (

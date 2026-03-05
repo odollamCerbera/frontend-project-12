@@ -1,10 +1,9 @@
 import i18next from 'i18next'
-import React from 'react'
 import { I18nextProvider, initReactI18next } from 'react-i18next'
 import { Provider } from 'react-redux'
 import App from './App'
 import resources from './locales/index.js'
-import { store } from './store.js'
+import { store } from './slices/index.js'
 
 // Здесь инициализируем приложение
 const init = async () => {

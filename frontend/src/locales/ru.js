@@ -52,7 +52,7 @@ export default {
       },
       system: {
         invalidData: 'Неверные имя пользователя или пароль',
-        alreadyExists: 'Такой пользователь уже существует', // 409, если user с таким login уже существует
+        alreadyExists: 'Такой пользователь уже существует',
         connection: 'Ошибка соединения',
         serverError: 'Сервер не отвечает',
         unknown: 'Неизвестная ошибка',

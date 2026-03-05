@@ -6,7 +6,6 @@ const LoginPage = () => (
     <Header />
     <LoginCard />
   </div>
-
 )
 
 export default LoginPage

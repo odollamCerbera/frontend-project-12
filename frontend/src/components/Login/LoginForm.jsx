@@ -1,17 +1,20 @@
 import { Formik } from 'formik'
+import { useEffect } from 'react'
 import { Alert, Button, Form } from 'react-bootstrap'
 import { useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
-import { login } from '../../slices/authSlice.js'
+import { clearError } from '../../slices/authSlice.js'
+import { login } from '../../slices/authThunks.js'
 import { getLoginSchema } from '../../utils/loginShema.js'
 import FormField from '../FormField.jsx'
 
 const LoginForm = () => {
   const { t } = useTranslation()
+  const { loading, error } = useSelector((state) => state.auth)
   const dispatch = useDispatch()
   const navigate = useNavigate()
-  const { loading, error } = useSelector((state) => state.auth)
+  useEffect(() => { dispatch(clearError()) }, [dispatch])
 
   return (
     <Formik
@@ -39,7 +42,6 @@ const LoginForm = () => {
             type='password'
           />
 
-          {/* Вывод системной ошибки отдельным блоком при наличии */}
           {error && (
             <Alert variant='danger'>
               {t(error)}

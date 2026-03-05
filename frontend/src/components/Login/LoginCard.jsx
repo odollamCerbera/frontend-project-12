@@ -13,15 +13,12 @@ const LoginCard = () => {
         <Col xs={12} md={8} xxl={6}>
           <Card className='shadow-sm'>
             <Card.Body className='row p-5'>
-
               <Col md={6} className='d-flex align-items-center justify-content-center'>
                 <Image src={avatarLoginPage} className='rounded-circle' alt={t('authorization.login')} />
               </Col>
-
               <Col md={6} className='mt-3 mt-md-0'>
                 <LoginForm />
               </Col>
-
             </Card.Body>
             <LoginFooter />
           </Card>

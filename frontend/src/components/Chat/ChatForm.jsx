@@ -1,6 +1,7 @@
 import { Button, Form, InputGroup } from 'react-bootstrap'
 import { useTranslation } from 'react-i18next'
 
+// Пофиксить автофокус
 // Здесь нужно реализовать отправку сообщений по клику
 const ChatForm = () => {
   const { t } = useTranslation()
@@ -17,7 +18,7 @@ const ChatForm = () => {
             defaultValue=''
             autoFocus
           />
-          <Button type='submit' disabled variant='outline-secondary' className='btn-group-vertical'>
+          <Button type='submit' variant='outline-secondary' className='btn-group-vertical'>
             <svg
               xmlns='http://www.w3.org/2000/svg'
               viewBox='0 0 16 16'

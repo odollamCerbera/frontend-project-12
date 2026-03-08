@@ -1,17 +1,19 @@
+import { useEffect, useRef } from 'react'
 import { Container } from 'react-bootstrap'
 import { useTranslation } from 'react-i18next'
 import { useSelector } from 'react-redux'
 import { selectMessagesByCurrentChannel } from '../../slices/selectors'
 
-// Здесь нужно реализовать отображение сообщений в каналах и скролл
 const ChatHistory = () => {
   const { t } = useTranslation()
   const messages = useSelector(selectMessagesByCurrentChannel)
-
-  // Структура сообщения { id: '1', body: 'text message', channelId: '1', username: 'admin' }
+  const messagesRef = useRef(null)
+  useEffect(() => {
+    messagesRef.current?.lastElementChild?.scrollIntoView({ behavior: 'smooth' })
+  }, [messages])
 
   return (
-    <Container id='messages-box' className='chat-messages overflow-auto px-5'>
+    <Container ref={messagesRef} id='messages-box' className='chat-messages overflow-auto px-5'>
       {messages.map((message) => (
         <div className='text-break mb-2' key={message.id}>
           <b>{message.username}</b>

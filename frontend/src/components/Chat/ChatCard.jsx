@@ -1,6 +1,7 @@
 import { useEffect } from 'react'
-import { Col, Container, Row } from 'react-bootstrap'
+import { Col, Container, Row, Spinner } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
+import { selectChannelsLoading, selectMessagesLoading } from '../../slices/selectors'
 import { fetchChannels, fetchMessages } from '../../slices/thunks/chatThunks'
 import ChannelsNavigation from './ChannelsNavigation'
 import ChannelsNavigationHeader from './ChannelsNavigationHeader'
@@ -8,10 +9,12 @@ import ChatForm from './ChatForm'
 import ChatHeader from './ChatHeader'
 import ChatHistory from './ChatHistory'
 
-// В демо спиннер во время загрузки - нужно будет добавить
+
 const ChatCard = () => {
   const dispatch = useDispatch()
   const { isAuthenticated } = useSelector(state => state.auth)
+  const channelsLoading = useSelector(selectChannelsLoading)
+  const messagesLoading = useSelector(selectMessagesLoading)
 
   useEffect(() => {
     if (isAuthenticated) {
@@ -19,6 +22,16 @@ const ChatCard = () => {
       dispatch(fetchMessages())
     }
   }, [dispatch, isAuthenticated])
+
+  const isLoading = channelsLoading === 'pending' || messagesLoading === 'pending'
+
+  if (isLoading) {
+    return (
+      <Container className='h-100 my-4 d-flex justify-content-center align-items-center'>
+        <Spinner animation='border' variant='primary' />
+      </Container>
+    )
+  }
 
   return (
     <Container className='h-100 my-4 overflow-hidden rounded shadow'>

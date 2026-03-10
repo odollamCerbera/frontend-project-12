@@ -12,6 +12,8 @@ import { addChannel, removeChannel, renameChannel } from './slices/slices/channe
 import { addMessage } from './slices/slices/messagesSlice'
 import socket from './socket'
 import { ROUTES } from './utils/routes'
+import { ToastContainer } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
 
 const PrivateRoute = ({ children }) => {
   const isAuthenticated = useSelector(selectIsAuthenticated)
@@ -57,6 +59,7 @@ const App = () => {
         <Route path={ROUTES.SIGNUP} element={<SignupPage />} />
         <Route path={ROUTES.NOT_FOUND} element={<NotFoundPage />} />
       </Routes>
+      <ToastContainer position='top-right' autoClose={5000} closeOnClick />
     </BrowserRouter>
   )
 }

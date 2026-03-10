@@ -17,7 +17,9 @@ const ChannelsNavigationHeader = () => {
       <Button onClick={handleOpen} variant='link' className='p-0 text-primary btn-group-vertical'>
         <TbSquarePlus size={25} strokeWidth={1} />
       </Button>
-      <AddChannelModal show={showModal} onHide={handleClose} />
+      {showModal &&
+        <AddChannelModal show={showModal} onHide={handleClose} />
+      }
     </div>
   )
 }

@@ -6,6 +6,7 @@ import { selectChannelsNames } from '../../slices/selectors'
 import { createChannel } from '../../slices/thunks/channelThunk'
 import { getChannelSchema } from '../../utils/schema/channelSchema'
 import FormField from '../FormField'
+import leoProfanity from '../../utils/profanity'
 
 const AddChannelModal = ({ show, onHide }) => {
   const { t } = useTranslation()
@@ -13,7 +14,7 @@ const AddChannelModal = ({ show, onHide }) => {
   const existingChannels = useSelector(selectChannelsNames)
 
   return (
-    <Modal show={show} onHide={onHide} centered>
+    <Modal show={show} onHide={onHide} restoreFocus={false} centered>
       <Modal.Header closeButton>
         <Modal.Title>{t('channels.createChannel')}</Modal.Title>
       </Modal.Header>
@@ -23,19 +24,14 @@ const AddChannelModal = ({ show, onHide }) => {
         validationSchema={getChannelSchema(t, existingChannels)}
         onSubmit={async (values, { setSubmitting }) => {
           try {
-            await dispatch(createChannel(values.name.trim())).unwrap()
-            //////////////////////////////////////////////////////
-            console.log('Канал успешно создан')
+            const cleanName = leoProfanity.clean(values.name.trim())
+            await dispatch(createChannel(cleanName)).unwrap()
             onHide()
-          } catch (error) {
-            //////////////////////////////////////////////////////
-            console.log('Ошибка создания канала')
           }
           finally {
             setSubmitting(false)
           }
-        }
-        }
+        }}
       >
         {({ handleSubmit, isSubmitting }) => (
           <Form onSubmit={handleSubmit}>

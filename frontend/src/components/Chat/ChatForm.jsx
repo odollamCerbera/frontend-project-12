@@ -5,6 +5,7 @@ import { TbSquareArrowRight } from 'react-icons/tb'
 import { useDispatch, useSelector } from 'react-redux'
 import { selectCurrentChannelId, selectUsername } from '../../slices/selectors'
 import { sendMessage } from '../../slices/thunks/messageThunk'
+import leoProfanity from '../../utils/profanity'
 
 const ChatForm = () => {
   const { t } = useTranslation()
@@ -16,9 +17,7 @@ const ChatForm = () => {
   const [sending, setSending] = useState(false)
 
   useEffect(() => {
-    if (inputRef.current) {
-      inputRef.current.focus()
-    }
+    inputRef.current?.focus()
   }, [currentChannelId, sending])
 
   const handleSubmit = async (e) => {
@@ -27,11 +26,9 @@ const ChatForm = () => {
 
     setSending(true)
     try {
-      await dispatch(sendMessage({ body: message.trim(), channelId: currentChannelId, username })).unwrap()
+      await dispatch(sendMessage({ body: leoProfanity.clean(message.trim()), channelId: currentChannelId, username })).unwrap()
       setMessage('')
       inputRef.current?.focus()
-    } catch (error) {
-
     } finally {
       setSending(false)
     }

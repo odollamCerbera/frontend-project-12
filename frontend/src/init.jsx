@@ -3,6 +3,7 @@ import { Provider } from 'react-redux'
 import App from './App'
 import i18n from './i18n'
 import { store } from './slices/index'
+import './utils/profanity'
 
 // Здесь инициализируем приложение
 const init = async () => (

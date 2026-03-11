@@ -1,1 +1,5 @@
-// Модалка для удаления
+const RemoveChannelModal = () => {
+  // тут модалка для удаления
+}
+
+export default RemoveChannelModal

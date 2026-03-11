@@ -1,3 +1,4 @@
+import ModalRoot from '@components/Modal/ModalRoot'
 import { addChannel, removeChannel, renameChannel } from '@slices/channelsSlice'
 import { addMessage } from '@slices/messagesSlice'
 import { selectIsAuthenticated } from '@store/selectors'
@@ -58,6 +59,7 @@ const App = () => {
         <Route path={ROUTES.SIGNUP} element={<SignupPage />} />
         <Route path={ROUTES.NOT_FOUND} element={<NotFoundPage />} />
       </Routes>
+      <ModalRoot />
       <ToastContainer position='top-right' autoClose={5000} closeOnClick />
     </BrowserRouter>
   )

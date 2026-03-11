@@ -1,8 +1,14 @@
+import { openModal } from '@slices/modalSlice'
 import { Button, ButtonGroup, Dropdown } from 'react-bootstrap'
 import { useTranslation } from 'react-i18next'
+import { useDispatch } from 'react-redux'
 
 const ChannelActions = ({ channel, isActive, onSelect }) => {
   const { t } = useTranslation()
+  const dispatch = useDispatch()
+
+  const handleRemove = () => dispatch(openModal({ type: 'removeChannel', extraData: channel }))
+  const handleRename = () => dispatch(openModal({ type: 'renameChannel', extraData: channel }))
 
   return (
     <ButtonGroup className='w-100'>
@@ -21,10 +27,10 @@ const ChannelActions = ({ channel, isActive, onSelect }) => {
         </Dropdown.Toggle>
 
         <Dropdown.Menu>
-          <Dropdown.Item>
+          <Dropdown.Item onClick={handleRemove}>
             {t('channels.removeChannel')}
           </Dropdown.Item>
-          <Dropdown.Item>
+          <Dropdown.Item onClick={handleRename}>
             {t('channels.renameChannel')}
           </Dropdown.Item>
         </Dropdown.Menu>

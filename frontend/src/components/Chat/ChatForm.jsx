@@ -7,18 +7,20 @@ import { useTranslation } from 'react-i18next'
 import { TbSquareArrowRight } from 'react-icons/tb'
 import { useDispatch, useSelector } from 'react-redux'
 
+
 const ChatForm = () => {
   const { t } = useTranslation()
   const dispatch = useDispatch()
   const currentChannelId = useSelector(selectCurrentChannelId)
   const username = useSelector(selectUsername)
+  const isModalOpen = useSelector(state => state.modal.isOpen)
   const inputRef = useRef(null)
   const [message, setMessage] = useState('')
   const [sending, setSending] = useState(false)
 
   useEffect(() => {
-    inputRef.current?.focus()
-  }, [currentChannelId, sending])
+    if (currentChannelId && !isModalOpen) inputRef.current?.focus()
+  }, [currentChannelId, sending, isModalOpen])
 
   const handleSubmit = async (e) => {
     e.preventDefault()

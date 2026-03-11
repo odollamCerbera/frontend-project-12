@@ -1,3 +1,4 @@
+import { closeModal } from '@slices/modalSlice'
 import { selectChannelsNames } from '@store/selectors'
 import { createChannel } from '@thunks/channelThunk'
 import leoProfanity from '@utils/profanity'
@@ -8,14 +9,16 @@ import { useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 import FormField from '../Ui/FormField'
 
-const AddChannelModal = ({ show, onHide }) => {
+const AddChannelModal = () => {
   const { t } = useTranslation()
   const dispatch = useDispatch()
   const existingChannels = useSelector(selectChannelsNames)
 
+  const handleClose = () => dispatch(closeModal())
+
   return (
-    <Modal show={show} onHide={onHide} restoreFocus={false} centered>
-      <Modal.Header closeButton>
+    <>
+      <Modal.Header onHide={handleClose} closeButton>
         <Modal.Title>{t('channels.createChannel')}</Modal.Title>
       </Modal.Header>
 
@@ -26,7 +29,7 @@ const AddChannelModal = ({ show, onHide }) => {
           try {
             const cleanName = leoProfanity.clean(values.name.trim())
             await dispatch(createChannel(cleanName)).unwrap()
-            onHide()
+            handleClose()
           } finally {
             setSubmitting(false)
           }
@@ -46,7 +49,7 @@ const AddChannelModal = ({ show, onHide }) => {
             </Modal.Body>
 
             <Modal.Footer>
-              <Button variant='secondary' onClick={onHide} disabled={isSubmitting}>
+              <Button variant='secondary' onClick={handleClose} disabled={isSubmitting}>
                 {t('channels.cancel')}
               </Button>
 
@@ -57,7 +60,7 @@ const AddChannelModal = ({ show, onHide }) => {
           </Form>
         )}
       </Formik>
-    </Modal >
+    </>
   )
 }
 

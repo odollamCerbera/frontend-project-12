@@ -6,6 +6,14 @@ import {
   renameChannel as renameChannelThunk,
 } from '@thunks/channelThunk'
 
+const handleRemoveChannel = (state, action) => {
+  const id = action.payload
+  state.entities = state.entities.filter(ch => ch.id !== id)
+  if (state.currentChannelId === id) {
+    state.currentChannelId = state.entities[0]?.id || null
+  }
+}
+
 const channelsSlice = createSlice({
   name: 'channels',
   initialState: {
@@ -26,14 +34,6 @@ const channelsSlice = createSlice({
       state.entities.push(action.payload)
       state.currentChannelId = action.payload.id
     },
-    removeChannel(state, action) {
-      const id = action.payload
-      state.entities = state.entities.filter(ch => ch.id !== id)
-      // Если удалили текущий канал – переключаемся на дефолтный general
-      if (state.currentChannelId === id) {
-        state.currentChannelId = state.entities[0]?.id || null
-      }
-    },
     renameChannel(state, action) {
       const updated = action.payload;
       const index = state.entities.findIndex(ch => ch.id === updated.id)
@@ -41,6 +41,7 @@ const channelsSlice = createSlice({
         state.entities[index] = updated
       }
     },
+    removeChannel: handleRemoveChannel,
     clearOperationError(state) {
       state.operationError = null
     },
@@ -88,8 +89,9 @@ const channelsSlice = createSlice({
         state.removing = true
         state.operationError = null
       })
-      .addCase(removeChannelThunk.fulfilled, (state) => {
+      .addCase(removeChannelThunk.fulfilled, (state, action) => {
         state.removing = false
+        handleRemoveChannel(state, action)
       })
       .addCase(removeChannelThunk.rejected, (state, action) => {
         state.removing = false

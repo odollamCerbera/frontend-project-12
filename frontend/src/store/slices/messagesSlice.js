@@ -1,5 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit'
 import { fetchMessages, sendMessage } from '@thunks/messageThunk'
+import { removeChannel } from '@thunks/channelThunk'
+import { removeChannel as removeChannelAction } from './channelsSlice'
 
 const messagesSlice = createSlice({
   name: 'messages',
@@ -39,6 +41,10 @@ const messagesSlice = createSlice({
       .addCase(sendMessage.rejected, (state, action) => {
         state.sending = false
         state.sendError = action.payload
+      })
+      .addCase(removeChannel.fulfilled, (state, action) => {
+        const channelId = action.payload
+        state.entities = state.entities.filter(msg => msg.channelId !== channelId)
       })
   },
 })

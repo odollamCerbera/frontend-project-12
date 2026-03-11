@@ -5,11 +5,6 @@ import { useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 import ChannelActions from './ChannelActions'
 
-/*
-Реализуйте удаление канала (с подтверждением). Удаляться могут только вновь созданные каналы. При удалении канала должны удаляться и его сообщения, а пользователи, находящиеся в удаляемом канале, должны быть перемещены в дефолтный канал
-Реализуйте переименование канала (внутри модального окна). Имена каналов не должны повторяться
-*/
-
 const ChannelsNavigation = () => {
   const { t } = useTranslation()
   const dispatch = useDispatch()

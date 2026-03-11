@@ -31,6 +31,7 @@ export default {
       createChannel: 'Добавить канал',
       renameChannel: 'Переименовать',
       removeChannel: 'Удалить',
+      removeChannelWarning: 'Вы действительно хотите удалить канал?',
       send: 'Отправить',
       cancel: 'Отменить',
       channelCreated: 'Канал создан',

@@ -1,4 +1,5 @@
 import { createAsyncThunk } from '@reduxjs/toolkit'
+import { ROUTES } from '@utils/routes'
 import axios from 'axios'
 import { toast } from 'react-toastify'
 import i18n from '../../i18n'
@@ -9,7 +10,7 @@ export const fetchChannels = createAsyncThunk(
   async (_, { getState, rejectWithValue }) => {
     const token = getState().auth.token
     try {
-      const response = await axios.get('/api/v1/channels', {
+      const response = await axios.get(ROUTES.CHANNELS(), {
         headers: { Authorization: `Bearer ${token}` },
       })
       return response.data
@@ -27,7 +28,7 @@ export const createChannel = createAsyncThunk(
     const token = getState().auth.token
     try {
       const response = await axios.post(
-        '/api/v1/channels',
+        ROUTES.CHANNELS(),
         { name },
         { headers: { Authorization: `Bearer ${token}` } }
       )
@@ -47,7 +48,7 @@ export const renameChannel = createAsyncThunk(
     const token = getState().auth.token
     try {
       await axios.patch(
-        `/api/v1/channels/${id}`,
+        `${ROUTES.CHANNELS()}/${id}`,
         { name },
         { headers: { Authorization: `Bearer ${token}` } }
       )
@@ -65,7 +66,7 @@ export const removeChannel = createAsyncThunk(
   async (id, { getState, rejectWithValue }) => {
     const token = getState().auth.token
     try {
-      await axios.delete(`/api/v1/channels/${id}`, {
+      await axios.delete(`${ROUTES.CHANNELS()}/${id}`, {
         headers: { Authorization: `Bearer ${token}` },
       })
       toast.success(i18n.t('channels.channelRemoved'))

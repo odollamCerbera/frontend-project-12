@@ -22,6 +22,8 @@ const LoginForm = () => {
     <Formik
       initialValues={{ username: '', password: '' }}
       validationSchema={getLoginSchema(t)}
+      validateOnChange={false}
+      validateOnBlur={false}
       onSubmit={async (values) => {
         const result = await dispatch(login(values))
         if (login.fulfilled.match(result)) navigate(ROUTES.HOME)

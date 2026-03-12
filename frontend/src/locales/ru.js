@@ -6,10 +6,14 @@ export default {
       logout: 'Выйти',
       signup: 'Регистрация',
     },
-    notFoundPage: {
+    errorPage: {
       pageNotFound: 'Страница не найдена',
       suggestAction: 'Но вы можете перейти',
       mainPage: 'на главную страницу',
+      maintenance: 'Ведутся технические работы',
+      somethingWrong: 'Упс! Что-то пошло не так.',
+      description: 'Мы уже работаем над исправлением и скоро всё вернем в строй.',
+      retryAction: 'Попробовать снова',
     },
     loginPage: {
       login: 'Ваш ник',

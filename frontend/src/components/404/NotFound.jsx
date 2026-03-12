@@ -8,10 +8,10 @@ const NotFound = () => {
 
   return (
     <Container className='text-center'>
-      <Image fluid alt={t('notFoundPage.pageNotFound')} className='h-25 mb-4' src={imageNotFound} />
-      <h1 className='h4 text-muted'>{t('notFoundPage.pageNotFound')}</h1>
-      <p className='text-muted'>{t('notFoundPage.suggestAction')}&nbsp;
-        <a href={ROUTES.HOME}>{t('notFoundPage.mainPage')}</a>
+      <Image fluid alt={t('errorPage.pageNotFound')} className='h-25 mb-4' src={imageNotFound} />
+      <h1 className='h4 text-muted'>{t('errorPage.pageNotFound')}</h1>
+      <p className='text-muted'>{t('errorPage.suggestAction')}&nbsp;
+        <a href={ROUTES.HOME}>{t('errorPage.mainPage')}</a>
       </p>
     </Container>
   )

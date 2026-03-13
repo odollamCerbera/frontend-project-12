@@ -3,7 +3,6 @@ import { Navbar } from 'react-bootstrap'
 import { useTranslation } from 'react-i18next'
 import { Link } from 'react-router-dom'
 import LogoutButton from './LogoutButton'
-import TestRollbar from '../Ui/TestRollbar'
 
 const NavbarPage = () => {
   const { t } = useTranslation()

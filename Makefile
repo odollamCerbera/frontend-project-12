@@ -1,24 +1,16 @@
-lint-frontend:
-	make -C frontend lint
+
+lint:
+	npx eslint .
 
 install:
-	npm ci
-
-start-frontend:
-	make -C frontend start
-
-start-backend:
-	npx start-server -s ./frontend/dist
-
-deploy:
-	git push heroku main
-
-start:
-	make start-backend
-
-develop:
-	make start-backend & make start-frontend
+	npm ci && cd frontend && npm ci
 
 build:
-	rm -rf frontend/dist
 	npm run build
+
+start:
+	npm run start
+
+	lint:
+	npx eslint .
+	
